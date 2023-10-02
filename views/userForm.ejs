@@ -1,0 +1,226 @@
+<!-- <form action="/saveUser"  method="POST">  
+    
+
+    <label >Firstname</label>
+    <input style="margin: 10px;" type="text" placeholder="Enter First Name" name="firstname" required >  
+    <br>
+    <label>Lastname</label>
+    <input style="margin: 10px;"  type="text" placeholder="Enter Last Name" name="lastname" required >  
+    <br>
+    <label>Email</label>
+    <input style="margin: 10px;"  type="email" placeholder="Enter Email" name="email" required >  
+    <br>
+    <button style="margin: 10px;"  type="submit">Submit</button>
+   
+</form> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create User</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #AFD275; /* Background color for the entire page */
+        }
+
+        /* Style for the form container */
+        .form-container {
+            background: linear-gradient(145deg, #b9d38f, #7fb14a);
+            margin-top: 25px;
+            padding: 4%;
+            box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                        3px -3px 6px 0 rgba(39, 87, 0, 0.979);
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Style for the form labels and inputs */
+        label {
+            font-weight: bold;
+            display: block;
+            color: #273117;
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .field {
+            margin: 100x;
+            padding: 10px;
+            border: 1px solid #4b5738;
+            border-radius: 5px;
+            background: linear-gradient(145deg, #b9d38f, #7fb14a);;
+            color: #273117;
+            width: 25%;
+            text-align: center;
+            background: linear-gradient(145deg, #b9d38f, #7fb14a); /* Gradient background */
+            /* box-shadow: 8px 8px 16px 0 #667947b4(0, 0, 0, 0.2),
+                        -8px -8px 16px 0 rgba(220, 248, 201, 0.5); */
+            transition: box-shadow 0.3s ease; /* Transition for hover effect */
+            border-radius: 10px;
+            box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                        3px -3px 6px 0 rgba(226, 247, 221, 0.5); 
+        }
+
+
+        .field:hover {
+            padding: 10px;
+            border: 1px solid #3d501f;
+            border-radius: 5px;
+            background: linear-gradient(145deg, #b6d389, #b9d890);;
+        }
+
+        /* button[type="submit"] {
+            margin: 10px;
+            padding: 10px 20px;
+            background: linear-gradient(145deg, #b9d38f, #b3d88b);;
+            border: #8aa363;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: linear-gradient(145deg, #7fb14a, #8aa363);
+        } */
+
+        .navbar {
+            background: linear-gradient(145deg, #8aa363, #7fb14a); /* Gradient background */
+            padding: 16px;
+            box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                        3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between; /* Align items to the start and end of the container */
+            align-items: center; /* Center vertically within the container */
+            margin-bottom: 16px;
+            position: sticky;
+            margin-bottom: auto; /* Push the header to the top */
+            top:0px;
+        }
+
+        .navbar a {
+            margin-right: 4px; /* Adjust the spacing between navigation links */
+            text-decoration: none;
+            color: white;
+        }
+        
+        .navbar p {
+            text-decoration: none;
+            color: white;
+        }
+
+        .context1 {
+            background: linear-gradient(145deg, #AFD275, rgb(160, 209, 107)); /* Gradient background */
+            margin-top: 25px;
+            padding: 2%;
+            box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                        3px -3px 6px 0 rgba(39, 87, 0, 0.979);
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .context {
+            background: linear-gradient(145deg, #AFD275, rgb(160, 209, 107)); /* Gradient background */
+            margin-top: 25px;
+            padding: 4%;
+            box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                        3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+            border-radius: 10px;
+            color: white;
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .context h1 {
+            font-size: 400%;
+            font-weight: bold;
+        }
+
+        .context:hover {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.2),
+                        -6px -6px 12px 0 rgba(220, 248, 201, 0.5); /* Adjust box shadow */
+            transform: translate(0px, -10px);
+        }
+        
+        #instruction {
+            font-size: 25px;
+            font-weight: bold;
+            color:#2b331e;
+            margin-bottom: 20px;
+            margin-top: -20px;
+        }
+
+        .neumorphic-button-e {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(145deg, #8aa363, #7fb14a); /* Gradient background */
+            border-radius: 10px;
+            box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                        3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transitions for hover effect */
+            cursor: pointer;
+            text-decoration: none; /* Remove default underline for links */
+            color: white; /* Text color */
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .neumorphic-button-e:hover {
+            /* transform: translate(2px, 2px);  Move button down and to the right */
+            box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.2),
+                        -6px -6px 12px 0 rgba(220, 248, 201, 0.5); /* Adjust box shadow */
+        }
+    </style>
+</head>
+<body class="p-4 mt-4">
+    <div class="navbar">
+        <div class="text">
+          <p class=""> DataTrack</p>
+        </div>
+        
+        <!-- Add navigation links here -->
+        <div class="navs">
+          <a href="/" class="nav-buttons">Home</a>
+          <a href="/insertuser" class="nav-buttons">Create</a>
+          <a href="/contact" class="nav-buttons">Contact</a>
+        </div>
+    </div>
+
+    <div class="context1">
+        <div class="context">
+          <h1>DataTrack: Create;</h1>
+          <h2 class="text-2xl">Create a new User</h1>
+        </div>
+    </div>
+
+    <form action="/saveUser" method="POST" class="form-container">
+        <div>
+            <h1 id="instruction"> CREATE: Fill out the following information;</h1>
+            <label for="firstname">First Name:</label>
+            <input type="text" class = "field" id="firstname" name="firstname" required>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" class = "field" id="lastname" name="lastname"  required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" class = "field" id="email" name="email" required>
+        </div>
+        <div>
+            <button type="submit" class="neumorphic-button-e">Submit</button>
+        </div>
+        
+    </form>
+</body>
+</html>

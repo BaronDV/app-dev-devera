@@ -1,0 +1,269 @@
+<!-- <body>
+    <h1>Layout</h1>
+    <%= userList.length  %>
+    <a href="/insertuser"> Create User</a> 
+
+    
+    <ul>
+        <% userList.forEach((user) => { %>
+          <li>Email: <%= user.email %></li>
+          <li>Firstname: <%= user.firstname %></li>
+          <li>Lastname: <%= user.lastname %></li>
+          
+          <li><td><a href="/edituser/<%=user.id%>" class="edit-link" >Edit</a></td></li>
+          <li><td><a href="/deleteuser/<%=user.id%>" class="edit-link" >Delete</a></td></li>
+          
+        <% }) %>
+      </ul>
+    
+</body>
+ -->
+
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+    <title>DataTrack</title>
+   <!-- Include the link to the Tailwind CSS stylesheet -->
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   <style>
+    body {
+      background: #AFD275; /* Background color for the entire page */
+    }
+
+    .user-cards {
+      background: linear-gradient(145deg, #b9d38f, #7fb14a); /* Gradient background */
+      /* box-shadow: 8px 8px 16px 0 #667947b4(0, 0, 0, 0.2),
+                  -8px -8px 16px 0 rgba(220, 248, 201, 0.5); */
+      transition: box-shadow 0.3s ease; /* Transition for hover effect */
+      border-radius: 10px;
+      box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+    }
+  
+    /* Add hover effect */
+    .user-cards:hover {
+      transform: translate(0px, -1px);
+      /* box-shadow: -10px 10px 20px 0 rgba(39, 87, 0, 0.979),
+                  10px -10px 20px 0 rgba(226, 247, 221, 0.5); */
+      box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.2),
+              -6px -6px 12px 0 rgba(220, 248, 201, 0.5); /* Adjust box shadow */
+    }
+
+    .user-cards:hover .neumorphic-button-d{
+      display: inline-block;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    /* Neumorphic button style */
+    .neumorphic-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: linear-gradient(145deg, #b9d38f, #7fb14a); /* Gradient background */
+      border-radius: 10px;
+      box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transitions for hover effect */
+      cursor: pointer;
+      text-decoration: none; /* Remove default underline for links */
+      color: white; /* Text color */
+    }
+  
+    /* Add hover effect */
+    .neumorphic-button:hover {
+      /* transform: translate(2px, 2px);  Move button down and to the right */
+      box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.2),
+                  -6px -6px 12px 0 rgba(220, 248, 201, 0.5); /* Adjust box shadow */
+    }
+
+    .neumorphic-button-e {
+      display: inline-block;
+      padding: 10px 24px;
+      background: linear-gradient(145deg, #8aa363, #7fb14a); /* Gradient background */
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: none; /* Remove default underline for links */
+      color: white; /* Text color */
+    }
+
+    .neumorphic-button-d {
+      display: none; /* Initially hide the delete button */
+      padding: 5px 15px;
+      background: linear-gradient(145deg, #8aa363, #7fb14a); /* Gradient background */
+      border-radius: 10px;
+      text-decoration: none; /* Remove default underline for links */
+      color: white; /* Text color */
+    }
+    
+    /* Neumorphic navigation bar style */
+    .navbar {
+      
+      background: linear-gradient(145deg, #8aa363, #7fb14a); /* Gradient background */
+      padding: 16px;
+      box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between; /* Align items to the start and end of the container */
+      align-items: center; /* Center vertically within the container */
+      margin-bottom: 16px;
+      position: sticky;
+      margin-bottom: auto; /* Push the header to the top */
+      top:0px;
+    }
+
+    .navbar a {
+      margin-right: 4px; /* Adjust the spacing between navigation links */
+      text-decoration: none;
+      color: white;
+    }
+    
+    .navbar p {
+      text-decoration: none;
+      color: white;
+    }
+
+    .nav-buttons{
+      display: inline-block;
+      cursor: pointer;
+      text-decoration: none; /* Remove default underline for links */
+      color: white; /* Text color */
+    }
+
+    /* Add hover effect */
+    .nav-buttons:hover {
+      /* transform: translate(2px, 2px);  Move button down and to the right */
+      /* box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2),
+                  -4px -4px 8px 0 rgba(220, 248, 201, 0.5);  */
+      background: linear-gradient(145deg, #8aa363, #7fb14a);
+    }
+
+    .users-database-header {
+      background: linear-gradient(145deg, #8aa363, #7fb14a); /* Gradient background */
+      margin-top: 25px;
+      padding: 3px;
+      box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+      border-radius: 10px;
+      display: flex;
+      justify-content:center;
+      color: white;
+    }
+
+    .context1 {
+      background: linear-gradient(145deg, #AFD275, rgb(160, 209, 107)); /* Gradient background */
+      margin-top: 25px;
+      padding: 4%;
+      box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                3px -3px 6px 0 rgba(39, 87, 0, 0.979);
+      border-radius: 10px;
+      color: white;
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .context {
+      background: linear-gradient(145deg, #AFD275, rgb(160, 209, 107)); /* Gradient background */
+      margin-top: 25px;
+      padding: 7.5%;
+      box-shadow: -3px 3px 6px 0 rgba(39, 87, 0, 0.979),
+                3px -3px 6px 0 rgba(226, 247, 221, 0.5);
+      border-radius: 10px;
+      color: white;
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .context h1 {
+      font-size: 500%;
+      font-weight: bold;
+    }
+
+    .context:hover {
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      box-shadow: 6px 6px 12px 0 rgba(0, 0, 0, 0.2),
+                  -6px -6px 12px 0 rgba(220, 248, 201, 0.5); /* Adjust box shadow */
+      transform: translate(0px, -10px);
+      
+    }
+    
+
+  </style>
+  
+  </head>
+
+ <body class="p-4" >
+    <div class="navbar">
+      <div class="text">
+        <p class=""> DataTrack</p>
+      </div>
+      
+      <!-- Add navigation links here -->
+      <div class="navs">
+        <a href="/" class="nav-buttons">Home</a>
+        <a href="/insertuser" class="nav-buttons">Create</a>
+        <a href="/contact" class="nav-buttons">Contact</a>
+      </div>
+    </div>
+
+    <div class="context1">
+      <!-- <div class="context"> 
+        <img src="/images/datatracklogo.jpg"/>
+      </div> -->
+      <div class="context">
+        <h1>DataTrack</h1>
+        <h2 class="text-2xl">Data Management, Made Easy</h1>
+      </div>
+      <p class="mt-7"> Total User Count: <%= userList.length %></p>
+      
+    </div>
+
+
+    <!-- <div class="mt-7">
+      <h1 class="text-2xl font-bold mt-5">What is DataTrack?</h1>
+      <p class="text-lg"> DataTrack is a powerful tool that allows you to: </p>
+      <ul class="list-disc ml-8">
+        <li>Store and organize user information</li>
+        <li>Create new user records</li>
+        <li>Edit existing user data</li>
+        <li>Delete user records as needed</li>
+      </ul>
+
+      <p class="font-bold mt-7"> Total User Count as of Today: <%= userList.length %></p>
+
+      <p class="mt-4">To begin, select the "Create" button in the navigation bar.</p>
+    </div> -->
+    
+    <div class="users-database-header">
+      <a href="/insertuser" class="nav-buttons"> <p class=""> User Database Information </p> </a>
+    </div>
+  
+   <div class="mt-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
+     <% userList.forEach((user) => { %>
+       <div class="bg-green-100 rounded-lg user-cards p-4">
+        <a href="/deleteuser/<%= user.id %>" class="neumorphic-button-d">X</a>
+         <p class="font-bold">First Name:</p>
+         <p><%= user.firstname %></p>
+         <p class="font-bold">Last Name:</p>
+         <p><%= user.lastname %></p>
+         <p class="font-bold">Email:</p>
+         <p><%= user.email %></p>
+         <div class="mt-2">
+           <a href="/edituser/<%= user.id %>" class="neumorphic-button-e">Update Information</a>
+        
+         </div>
+       </div>
+     <% }) %>
+   </div>
+
+  </div>
+
+  
+ </body>
+ </html>
+ 
